@@ -1,0 +1,13 @@
+name: Notify portfolio to rebuild
+on:
+  push:
+    branches: [main]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PORTFOLIO_TOKEN }}
+          repository: KidSpartor/portfolio
+          event-type: dl-zero-to-unet-updated
