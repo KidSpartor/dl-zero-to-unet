@@ -71,6 +71,45 @@
 
   <hr class="section-divider">
 
+  <!-- ============ ACTIVATION POSITION ============ -->
+  <section class="section">
+    <h2>激活函数作用在哪里？</h2>
+    <p>在一个神经元中，计算分为两步：<strong>线性变换</strong>和<strong>非线性激活</strong>。激活函数紧接在线性变换 $z = \mathbf{w}^\top \mathbf{x} + b$ 之后施加。</p>
+
+    <div class="info-box">
+      <h4>单个神经元的完整计算</h4>
+      <p><strong>第一步：线性变换</strong>（加权求和 + 偏置）</p>
+      <p>$$z = \mathbf{w}^\top \mathbf{x} + b = \sum_{i=1}^{n} w_i x_i + b$$</p>
+      <p><strong>第二步：非线性激活</strong></p>
+      <p>$$a = \sigma(z) = \sigma(\mathbf{w}^\top \mathbf{x} + b)$$</p>
+      <p>其中 $\sigma$ 是激活函数（如 ReLU、Sigmoid），$a$ 是该神经元的最终输出。</p>
+    </div>
+
+    <p>对于一整层（$m$ 个神经元），可以写成矩阵形式：</p>
+    <div class="info-box">
+      <h4>一层的矩阵形式</h4>
+      <p>$$\mathbf{z} = \mathbf{W} \mathbf{x} + \mathbf{b} \quad \text{（线性变换）}$$</p>
+      <p>$$\mathbf{a} = \sigma(\mathbf{z}) = \sigma(\mathbf{W} \mathbf{x} + \mathbf{b}) \quad \text{（逐元素激活）}$$</p>
+      <p>$\mathbf{W} \in \mathbb{R}^{m \times n}$ 是权重矩阵，$\mathbf{b} \in \mathbb{R}^{m}$ 是偏置向量。</p>
+    </div>
+
+    <p>多层网络逐层堆叠，每层先线性变换再激活：</p>
+    <div class="info-box">
+      <h4>多层网络的前向计算</h4>
+      <p>$$\mathbf{h}_1 = \sigma_1(\mathbf{W}_1 \mathbf{x} + \mathbf{b}_1)$$</p>
+      <p>$$\mathbf{h}_2 = \sigma_2(\mathbf{W}_2 \mathbf{h}_1 + \mathbf{b}_2)$$</p>
+      <p>$$\vdots$$</p>
+      <p>$$\hat{\mathbf{y}} = \mathbf{W}_L \mathbf{h}_{L-1} + \mathbf{b}_L \quad \text{（输出层通常不加激活，或用 Softmax）}$$</p>
+    </div>
+
+    <div class="tip-box">
+      <h4>一句话总结</h4>
+      <p>激活函数是 $\mathbf{Wx} + \mathbf{b}$ 的<strong>后处理</strong>——先做线性组合，再用非线性函数"扭曲"结果。没有它，无论叠多少层都只是在做线性代数。</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
   <!-- ============ SIGMOID ============ -->
   <section class="section">
     <h2>Sigmoid</h2>
