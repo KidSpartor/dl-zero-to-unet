@@ -504,6 +504,18 @@ tr:hover td { background: var(--bg-secondary); }
 }
 
 /* --- Responsive --- */
+
+/* Canvas & images: always fit within container */
+canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 768px) {
   :root {
     --font-size-3xl: 1.75rem;
@@ -514,6 +526,16 @@ tr:hover td { background: var(--bg-secondary); }
   .chapter-nav { flex-direction: column; }
   .nav-links { display: none; }
   .demo-controls { flex-direction: column; align-items: flex-start; }
+
+  /* Force flex rows to stack on mobile */
+  .demo-container > div[style*="display:flex"],
+  .demo-container > div[style*="display: flex"] {
+    flex-direction: column;
+  }
+
+  /* Remove fixed min-widths that cause overflow */
+  canvas[style*="min-width"] { min-width: 0 !important; }
+  div[style*="min-width"] { min-width: 0 !important; }
 }
 
 /* --- Animations --- */
